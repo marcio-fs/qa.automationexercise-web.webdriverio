@@ -1,4 +1,4 @@
-name: CI/CD Pipeline - Test and Report
+name: CI/CD Pipeline - Test and Report - WebdriverIO Tests
 
 on:
   push:
