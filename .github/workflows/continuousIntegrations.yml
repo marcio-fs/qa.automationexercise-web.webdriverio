@@ -38,7 +38,13 @@ jobs:
           chrome-version: ${{ env.CHROME_VERSION }}
 
       - name: Install Project Dependencies
-        run: npm ci --prefer-offline
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            echo "Usando npm install (lock file não encontrado)"
+            npm install
+          fi  # Clean install for reproducibility
 
       - name: Clean Report Directory
         run: npm run pretest
