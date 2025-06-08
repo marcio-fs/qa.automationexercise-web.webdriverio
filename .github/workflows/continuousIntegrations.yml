@@ -2,77 +2,53 @@ name: CI/CD Pipeline - Test and Report - WebdriverIO Tests
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
-
-env:
-  NODE_VERSION: '18.x'
-  CHROME_VERSION: 'latest'
-  EDGE_VERSION: '136.0.3240.64'
+    branches:
+      - main
 
 jobs:
   test:
-    name: Run Tests and Generate Report
     runs-on: ubuntu-latest
-    timeout-minutes: 30
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
 
-      - name: Install System Dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wget unzip libgbm1
+    - name: Check Google Chrome Version
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+        google-chrome --version
 
-      - name: Install Chrome Browser
-        uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: ${{ env.CHROME_VERSION }}
+    - name: Install Google Chrome
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y wget unzip
+        wget -q -O google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo dpkg -i google-chrome.deb || sudo apt-get -f install -y
+        google-chrome --version
 
-      - name: Install Project Dependencies
-        run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          else
-            echo "Usando npm install (lock file não encontrado)"
-            npm install
-          fi  # Clean install for reproducibility
+    - name: Install dependencies
+      run: npm install
 
-      - name: Clean Report Directory
-        run: npm run pretest
+    - name: Clean dir report
+      run: npm run pretest
 
-      - name: Run Test Suite
-        run: npm run test
-        env:
-          CI: true
-          HEADLESS: true
+    - name: Run tests
+      run: npm run test
 
-      - name: Generate Allure Report
-        if: always()
-        run: npm run allure:generate
+    - name: Generate Allure Report
+      run: npm run allure:generate
 
-      - name: Upload Allure Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-report-${{ github.run_id }}
-          path: allure-report
-          retention-days: 7
-
-      - name: Upload Test Results
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results-${{ github.run_id }}
-          path: |
-            test-results/
-            logs/
-          retention-days: 7
+    - name: Upload Allure Report
+      uses: actions/upload-artifact@v4.6.2
+      with:
+        name: allure-report
+        path: allure-report
