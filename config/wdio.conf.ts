@@ -17,7 +17,7 @@ export const config = {
             maxInstances: 1,
             browserName: 'chrome',
             'goog:chromeOptions': {
-                args: ['--disable-gpu', '--window-size=1920,1080', '--start-maximized']
+                args: ['--headless','--disable-gpu', '--window-size=1920,1080', '--start-maximized']
             }
         }
     ],
