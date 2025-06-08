@@ -1,0 +1,127 @@
+
+#region Cart Elements
+cart:
+  cartTitle: 'ol[class="breadcrumb"] li[class="active"]'
+  cartItems: "#cart_info_table tbody tr"
+  cartQuantity: 'td[class="cart_quantity"]'
+  cartPrice: 'td[class="cart_price"]'
+  cartTotal: 'td[class="cart_total"]'
+  cartDelete: 'td[class="cart_delete"] a'
+
+emptyCart:
+  emptyCartMessage: 'span[id="empty_cart"] p'
+#endregion Cart Elements
+
+#region Home Elements
+home:
+  pageLogo: 'img[alt="Website for automation practice"]'
+
+menu:
+  menu: 'ul[class="nav navbar-nav"] li a'
+  signupButton: 'a[href="/login"]'
+  logout: 'a[href="/logout"]'
+  deleteAccount: 'a[href="/delete_account"]'
+
+userLogged:
+  isLogged: 'ul[class="nav navbar-nav"] a'
+
+menuTitle:
+  homeTitle: 'Home'
+  productsTitle: 'Products'
+  cartTitle: 'Cart'
+  signupTitle: 'Signup / Login'
+  testCasesTitle: 'Test Cases'
+  apiTestingTitle: 'API Testing'
+  videoTutorialsTitle: 'Video Tutorials'
+  contactUsTitle: 'Contact Us'
+
+menuLinks:
+  homeLink: '/'
+  productsLink: '/products'
+  cartLink: '/view_cart'
+  signupLink: '/login'
+  testCasesLink: '/test_cases'
+  apiTestingLink: '/api_list'
+  videoTutorialsLink: 'https://www.youtube.com/c/AutomationExercise?themeRefresh=1'
+  contactUsLink: '/contact_us'
+
+  #endregion Home Elements
+
+#region Login Elements
+signUp:
+    signupText: 'div.signup-form h2'
+
+formLogin: 
+  nameInput: 'input[data-qa="signup-name"]'
+  emailInput: 'input[data-qa="signup-email"]'
+  signUpButton: 'button[data-qa="signup-button"]'
+#endregion Login Elements
+
+#region Notification Elements
+deleteAccount:
+  title: 'h2[data-qa="account-deleted"]'
+  btnContinue: 'a[data-qa="continue-button"]'
+
+registerAccount:
+  title: 'h2[data-qa="account-created"]'
+  btnContinue: 'a[data-qa="continue-button"]'
+
+#endregion Notification Elements
+
+#region Product Elements
+titleInPage:
+  product: 'div[class="features_items"] h2[class="title text-center"]'
+
+searchProduct:
+  searchInput: 'input#search_product'
+  searchButton: 'button#submit_search'
+  searchResult: 'div[class="features_items"]'
+  listProductsName: 'div[class="features_items"] div[class="productinfo text-center"] p'
+
+productsPageHome:
+  listProducts: 'div[class="features_items"] div[class="product-image-wrapper"]'
+  addhoverProduct: 'div.product'
+  continueShoppingButton: 'button[class="btn btn-success close-modal btn-block"]'
+  viewProduct: 'div[class="features_items"] div[class="product-image-wrapper"] a[href*="/product_details/"]'
+
+productPage:
+  inputQuantity: '#quantity'
+  buttonAddToCart: 'button[class="btn btn-default cart"]'
+
+#endregion Product Elements
+
+#region Register Elements
+formRegister:
+  title: '#id_gender1'
+  name: '#name'
+  email: '#email'
+  password: 'input[data-qa="password"]'
+  daysDropdwon: 'select[data-qa="days"]'
+  mothDropdown: 'select[data-qa="months"]'
+  yearDropdwon: 'select[data-qa="years"]'
+
+checkBox:
+  newsletter: '#newsletter'
+  offers: '#optin'
+
+adressRegister:
+  firstNameInput: 'input[data-qa="first_name"]'
+  lastNameInput: 'input[data-qa="last_name"]'
+  companyInput: 'input[data-qa="company"]'
+  address1Input: 'input[data-qa="address"]'
+  address2Input: 'input[data-qa="address2"]'
+  countryDropdown: 'select[data-qa="country"]'
+  stateInput: 'input[data-qa="state"]'
+  cityInput: 'input[data-qa="city"]'
+  zipcodeInpt: 'input[data-qa="zipcode"]'
+  mobileNumberInput: 'input[data-qa="mobile_number"]'
+
+createNewAccount:
+  btnCreateNewAccount: 'button[data-qa="create-account"]'
+
+
+titleRegister:
+  titleAccountInformation: 'div[class="login-form"] h2:nth-child(1)'
+  titleAdressInformation: 'form h2'
+
+#endregion Register Elements
